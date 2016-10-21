@@ -3,10 +3,17 @@
 namespace Ixolit\Dislo\CDE\UnitTest;
 
 abstract class CDEUnitTest {
-	protected function assertEquals($expected, $actual) {
+	protected function fail($message = '') {
+		throw new CDEUnitTestFailedException($message);
+	}
+
+	protected function assertEquals($expected, $actual, $message = '') {
 		if ($expected != $actual) {
-			throw new CDEUnitTestFailedException('Expected: ' . var_export($expected, true) . ' got: ' .
-				var_export($actual, true));
+			if (!$message) {
+				$message = 'Failed asserting that ' . \var_export($actual, true) . ' is equal to ' .
+					\var_export($expected, true);
+			}
+			$this->fail($message);
 		}
 	}
 

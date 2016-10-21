@@ -64,8 +64,12 @@ class WebTestRunner extends CDETestRunner {
 					test = queue.shift();
 					var xhr = new XMLHttpRequest();
 					xhr.onreadystatechange = function () {
-						if (this.readyState == 4 && this.status == 200) {
-							test.resultElement.innerText = xhr.responseText;
+						if (this.readyState == 4) {
+							if (this.status == 200) {
+								test.resultElement.innerText = xhr.responseText;
+							} else {
+								test.resultElement.innerText = 'fail';
+							}
 							processNextTest();
 						}
 					};
