@@ -2,6 +2,7 @@
 
 namespace Ixolit\Dislo\CDE\UnitTest;
 
+use Ixolit\Dislo\CDE\Exceptions\FileNotFoundException;
 use Ixolit\Dislo\CDE\Interfaces\FilesystemAPI;
 
 class CDETestRunner {
@@ -24,16 +25,20 @@ class CDETestRunner {
 
 	public function getUnitTests() {
 		foreach ($this->directories as $directory) {
-			foreach ($this->filesystemAPI->listDirectory($directory) as $file) {
-				if (\preg_match('/\.php$/D', $file->getName())) {
-					include_once((string)$file);
+			try {
+				foreach ($this->filesystemAPI->listDirectory($directory) as $file) {
+					if (\preg_match('/\.php$/D', $file->getName())) {
+						include_once((string)$file);
+					}
 				}
+			} catch (FileNotFoundException $e) {
 			}
 		}
 
-		$result = [];
+		$result = array();
 		foreach (\get_declared_classes() as $class) {
-			if (\in_array('Ixolit\\Dislo\\CDE\\UnitTest\\CDEUnitTest', \class_parents($class))) {
+			$parents = \class_parents($class);
+			if ($parents && \in_array('Ixolit\\Dislo\\CDE\\UnitTest\\CDEUnitTest', $parents)) {
 				$result[$class] = [];
 				foreach (\get_class_methods($class) as $method) {
 					if (preg_match('/^test/', $method)) {
@@ -46,7 +51,10 @@ class CDETestRunner {
 	}
 
 	public function execute($testClass, $testMethod) {
-		$this->getUnitTests();
+		$unitTests = $this->getUnitTests();
+		if (!isset($unitTests[$testClass]) || !in_array($testMethod, $unitTests[$testClass])) {
+			throw new \Exception('Invalid test: ' . $testClass . '::' . $testMethod);
+		}
 		$class = new $testClass();
 		try {
 			$class->$testMethod();
