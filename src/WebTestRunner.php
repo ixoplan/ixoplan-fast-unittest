@@ -2,7 +2,7 @@
 
 namespace Ixolit\Dislo\CDE\UnitTest;
 
-use Ixolit\Dislo\CDE\Interfaces\RequestAPI;use Ixolit\Dislo\CDE\Interfaces\ResponseAPI;
+use Ixolit\CDE\Interfaces\RequestAPI;use Ixolit\CDE\Interfaces\ResponseAPI;
 
 class WebTestRunner extends CDETestRunner {
 	public function handleRequest(RequestAPI $requestAPI, ResponseAPI $responseAPI) {

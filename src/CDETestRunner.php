@@ -2,8 +2,8 @@
 
 namespace Ixolit\Dislo\CDE\UnitTest;
 
-use Ixolit\Dislo\CDE\Exceptions\FileNotFoundException;
-use Ixolit\Dislo\CDE\Interfaces\FilesystemAPI;
+use Ixolit\CDE\Exceptions\FileNotFoundException;
+use Ixolit\CDE\Interfaces\FilesystemAPI;
 
 class CDETestRunner {
 	/**
