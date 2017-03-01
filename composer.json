@@ -12,7 +12,7 @@
 		}
 	},
 	"require": {
-		"ixolit/dislo-cde-sdk": "dev-mmarchewa/cde-sdk-separation"
+		"ixolit/dislo-cde-sdk": "^1.0.0"
 	},
 	"minimum-stability": "dev"
 }
