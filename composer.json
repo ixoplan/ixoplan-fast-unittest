@@ -1,6 +1,6 @@
 {
 	"name": "ixolit/dislo-cde-unittest",
-	"license": "Dislo license",
+	"license": "MIT",
 	"autoload": {
 		"psr-4": {
 			"Ixolit\\Dislo\\CDE\\UnitTest\\": "./src"
