@@ -2,7 +2,8 @@
 
 namespace Ixolit\Dislo\CDE\UnitTest;
 
-use Ixolit\CDE\Interfaces\RequestAPI;use Ixolit\CDE\Interfaces\ResponseAPI;
+use Ixolit\CDE\Interfaces\RequestAPI;
+use Ixolit\CDE\Interfaces\ResponseAPI;
 
 class WebTestRunner extends CDETestRunner {
 	public function handleRequest(RequestAPI $requestAPI, ResponseAPI $responseAPI) {
@@ -17,7 +18,7 @@ class WebTestRunner extends CDETestRunner {
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>CDE unit tests</title>
+		<title>FAST unit tests</title>
 		<meta name="HandheldFriendly" content="true" />
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
